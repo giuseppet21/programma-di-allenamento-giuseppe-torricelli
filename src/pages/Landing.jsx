@@ -28,7 +28,7 @@ export default function Landing() {
             className="text-center max-w-2xl"
           >
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white drop-shadow-lg">
-              Pronto per allenarti con GTCoorp?
+              Pronto per allenarti?
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-gray-200">
               Traccia i tuoi progressi, migliora le tue performance, raggiungi i tuoi obiettivi

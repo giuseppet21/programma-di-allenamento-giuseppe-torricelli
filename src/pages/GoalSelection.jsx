@@ -1,44 +1,30 @@
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 
-export default function GenderSelection() {
+export default function GoalSelection() {
   const navigate = useNavigate()
+  const selectedGender = localStorage.getItem('selectedGender')
 
-  const handleGenderSelect = (gender) => {
-    localStorage.setItem('selectedGender', gender)
-    navigate('/goal-selection')
+  const backgroundImage = selectedGender === 'female' 
+    ? "url('https://images.unsplash.com/photo-1518310383802-640c2de311b2')"  // Sfondo femminile
+    : "url('https://images.unsplash.com/photo-1605296867424-35fc25c9212a')"   // Sfondo maschile
+
+  const handleGoalSelect = (goal) => {
+    navigate('/workouts')
   }
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Immagine di sfondo principale */}
+      {/* Immagine di sfondo */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f')",
+          backgroundImage,
           filter: 'brightness(0.7)'
         }}
       />
 
-      {/* Immagine uomo (lato sinistro) */}
-      <div 
-        className="absolute left-0 bottom-0 h-full w-1/3 bg-contain bg-bottom bg-no-repeat"
-        style={{
-          backgroundImage: "url('/src/assets/images/male-trainer.png')",
-          opacity: '0.9'
-        }}
-      />
-
-      {/* Immagine donna (lato destro) */}
-      <div 
-        className="absolute right-0 bottom-0 h-full w-1/3 bg-contain bg-bottom bg-no-repeat"
-        style={{
-          backgroundImage: "url('/src/assets/images/female-trainer.png')",
-          opacity: '0.9'
-        }}
-      />
-
-      {/* Overlay Gradiente - più leggero per vedere meglio le figure */}
+      {/* Overlay Gradiente */}
       <div className="absolute inset-0 bg-gradient-to-br from-black/60 to-indigo-900/60" />
 
       {/* Contenuto */}
@@ -51,13 +37,10 @@ export default function GenderSelection() {
             className="text-center mb-16"
           >
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
-              Benvenuto in GTCoorp
+              Qual è il tuo obiettivo?
             </h1>
             <p className="text-xl text-gray-300 mb-6">
-              Il tuo percorso verso l'eccellenza inizia qui
-            </p>
-            <p className="text-2xl text-blue-300 italic font-light drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
-              "La forza non viene da una capacità fisica. Deriva da una volontà indomabile."
+              Scegli il tuo percorso di allenamento
             </p>
           </motion.div>
 
@@ -66,14 +49,15 @@ export default function GenderSelection() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => handleGenderSelect('male')}
+              onClick={() => handleGoalSelect('muscle')}
               className="bg-indigo-600 text-white px-8 py-4 rounded-lg text-xl font-semibold 
                        shadow-lg hover:bg-indigo-700 transition-all duration-300
                        hover:shadow-[0_0_15px_rgba(255,255,255,0.5)] 
                        hover:border-white hover:border-2"
             >
-              <div className="flex items-center gap-3">
-                <span className="text-xl font-semibold">UOMO</span>
+              <div className="flex items-center gap-6">
+                <span className="text-4xl">💪</span>
+                <span className="text-xl font-semibold">SVILUPPO MASSA</span>
                 <span className="text-xl">→</span>
               </div>
             </motion.button>
@@ -81,14 +65,15 @@ export default function GenderSelection() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => handleGenderSelect('female')}
-              className="bg-pink-600 text-white px-8 py-4 rounded-lg text-xl font-semibold 
-                       shadow-lg hover:bg-pink-700 transition-all duration-300
+              onClick={() => handleGoalSelect('loss')}
+              className="bg-indigo-600 text-white px-8 py-4 rounded-lg text-xl font-semibold 
+                       shadow-lg hover:bg-indigo-700 transition-all duration-300
                        hover:shadow-[0_0_15px_rgba(255,255,255,0.5)] 
                        hover:border-white hover:border-2"
             >
-              <div className="flex items-center gap-3">
-                <span className="text-xl font-semibold">DONNA</span>
+              <div className="flex items-center gap-6">
+                <span className="text-4xl">⚖️</span>
+                <span className="text-xl font-semibold">PERDITA PESO</span>
                 <span className="text-xl">→</span>
               </div>
             </motion.button>
