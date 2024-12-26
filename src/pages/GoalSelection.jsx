@@ -10,7 +10,12 @@ export default function GoalSelection() {
     : "url('https://images.unsplash.com/photo-1605296867424-35fc25c9212a')"   // Sfondo maschile
 
   const handleGoalSelect = (goal) => {
-    navigate('/workouts')
+    localStorage.setItem('selectedGoal', goal)
+    if (goal === 'muscle') {
+      navigate('/muscle-details')
+    } else {
+      navigate('/weight-loss-plan')
+    }
   }
 
   return (

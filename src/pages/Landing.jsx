@@ -66,7 +66,13 @@ export default function Landing() {
             description="Gestisci i tempi di recupero"
           />
           <Feature 
-            icon="🍴"
+            customIcon={
+              <img 
+                src="/src/assets/images/three-stars.png" 
+                alt="Three Stars" 
+                className="h-10 w-auto mx-auto mb-2"
+              />
+            }
             title="AI Nutrizionale"
             description="Consigli personalizzati per la tua dieta"
           />
@@ -76,14 +82,18 @@ export default function Landing() {
   )
 }
 
-function Feature({ icon, title, description }) {
+function Feature({ icon, customIcon, title, description }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       className="text-center text-white py-2"
     >
-      <span className="text-3xl mb-2 block">{icon}</span>
+      {customIcon ? (
+        customIcon
+      ) : (
+        <span className="text-3xl mb-2 block">{icon}</span>
+      )}
       <h3 className="text-lg font-semibold mb-1">{title}</h3>
       <p className="text-gray-300 text-sm">{description}</p>
     </motion.div>
