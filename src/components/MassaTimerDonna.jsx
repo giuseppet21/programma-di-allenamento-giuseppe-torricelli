@@ -2,8 +2,9 @@ import { useState, useEffect, useCallback } from 'react'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import { motion } from 'framer-motion'
 import { playSound } from '../utils/sounds'
+import 'react-circular-progressbar/dist/styles.css'
 
-export default function WorkoutTimer({ 
+export default function MassaTimerDonna({ 
   duration, 
   onComplete, 
   type = 'exercise',
@@ -70,27 +71,7 @@ export default function WorkoutTimer({
             trailColor: '#E5E7EB',
           })}
         />
-        <button
-          onClick={(e) => {
-            e.stopPropagation()
-            setIsMuted(!isMuted)
-          }}
-          className="absolute -top-2 -right-2 p-1 bg-white rounded-full shadow-sm"
-        >
-          {isMuted ? '🔇' : '🔊'}
-        </button>
       </motion.div>
-      
-      {customDuration && (
-        <input
-          type="range"
-          min="5"
-          max="300"
-          value={duration}
-          onChange={(e) => onDurationChange?.(Number(e.target.value))}
-          className="w-full mt-2"
-        />
-      )}
       
       <div className="text-center mt-2">
         <p className="text-sm text-gray-600">

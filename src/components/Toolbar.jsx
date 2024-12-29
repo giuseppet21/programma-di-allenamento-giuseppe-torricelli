@@ -6,28 +6,16 @@ export default function Toolbar({ onSelectTool }) {
 
   const tools = [
     { 
-      id: 'progress', 
-      name: 'Traccia Progressi', 
-      icon: '📊',
-      description: 'Monitora pesi, serie e ripetizioni'
-    },
-    { 
-      id: 'analytics', 
-      name: 'Analisi Dettagliate', 
-      icon: '📈',
-      description: 'Visualizza analisi e grafici'
-    },
-    { 
       id: 'timer', 
-      name: 'Timer Intelligente', 
+      name: 'Timer', 
       icon: '⏱️',
-      description: 'Gestisci i tempi di recupero'
+      description: 'Timer per il recupero'
     },
     { 
-      id: 'nutrition', 
-      name: 'AI Nutrizionale', 
-      icon: '🥗',
-      description: 'Consigli personalizzati per la tua dieta'
+      id: 'monitoring', 
+      name: 'Monitoraggio', 
+      icon: '📊',
+      description: 'Traccia peso e calorie'
     }
   ]
 
@@ -35,11 +23,17 @@ export default function Toolbar({ onSelectTool }) {
     <div className="fixed top-0 left-4 z-50">
       <div className="relative">
         <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+          whileHover={{ 
+            scale: 1.05,
+            shadow: "0 0 15px rgba(255,255,255,0.5)"
+          }}
+          whileTap={{ scale: 0.95 }}
           onClick={() => setIsOpen(!isOpen)}
           className="bg-black/80 backdrop-blur-sm p-4 rounded-lg shadow-lg 
-                   text-white font-semibold flex items-center gap-2"
+                   text-white font-semibold flex items-center gap-2
+                   hover:shadow-[0_0_15px_rgba(255,255,255,0.5)] 
+                   hover:border-white hover:border-2
+                   transition-all duration-300"
         >
           <span>Menu</span>
           <svg 
@@ -53,7 +47,7 @@ export default function Toolbar({ onSelectTool }) {
         </motion.button>
 
         {isOpen && (
-          <motion.div
+          <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             className="absolute top-full left-0 mt-2 w-72 bg-black/80 backdrop-blur-sm 
@@ -64,14 +58,20 @@ export default function Toolbar({ onSelectTool }) {
                 {tools.map((tool) => (
                   <motion.button
                     key={tool.id}
-                    whileHover={{ scale: 1.02, x: 10 }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={{ 
+                      scale: 1.05,
+                      shadow: "0 0 15px rgba(255,255,255,0.5)"
+                    }}
+                    whileTap={{ scale: 0.95 }}
                     onClick={() => {
                       onSelectTool(tool.id)
                       setIsOpen(false)
                     }}
                     className="p-4 rounded-lg bg-indigo-600/50 hover:bg-indigo-700/50
-                             text-white font-medium text-left transition-all"
+                             text-white font-medium text-left transition-all
+                             hover:shadow-[0_0_15px_rgba(255,255,255,0.5)] 
+                             hover:border-white hover:border-2
+                             duration-300"
                   >
                     <div className="flex items-center gap-3 mb-1">
                       <span className="text-xl">{tool.icon}</span>

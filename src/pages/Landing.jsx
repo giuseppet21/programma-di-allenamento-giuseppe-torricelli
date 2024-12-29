@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 export default function Landing() {
   const navigate = useNavigate()
-
+  
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Immagine di sfondo */}
@@ -48,8 +48,8 @@ export default function Landing() {
           </motion.div>
         </div>
 
-        {/* Features Grid con 4 elementi */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 py-4 px-8 bg-black/30 backdrop-blur-sm">
+        {/* Features Grid con 3 elementi */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-4 px-8 bg-black/30 backdrop-blur-sm">
           <Feature 
             icon="💪"
             title="Traccia i Progressi"
@@ -64,17 +64,6 @@ export default function Landing() {
             icon="⏱️"
             title="Timer Intelligente"
             description="Gestisci i tempi di recupero"
-          />
-          <Feature 
-            customIcon={
-              <img 
-                src="/src/assets/images/three-stars.png" 
-                alt="Three Stars" 
-                className="h-10 w-auto mx-auto mb-2"
-              />
-            }
-            title="AI Nutrizionale"
-            description="Consigli personalizzati per la tua dieta"
           />
         </div>
       </div>

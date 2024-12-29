@@ -1,6 +1,11 @@
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import MassaTimerUomo from '../components/MassaTimerUomo'
+import MassaTimerDonna from '../components/MassaTimerDonna'
+import PerditaTimerUomo from '../components/PerditaTimerUomo'
+import PerditaTimerDonna from '../components/PerditaTimerDonna'
+import SmartTimer from "@components/SmartTimer";
 
 export default function WorkoutPlan() {
   const navigate = useNavigate()
@@ -159,6 +164,19 @@ export default function WorkoutPlan() {
     }
   ]
 
+  const progressData = {
+    lastWeek: {
+      squat: "80kg x 5",
+      bench: "60kg x 5",
+      deadlift: "100kg x 5"
+    },
+    thisWeek: {
+      squat: "85kg x 5",
+      bench: "65kg x 5",
+      deadlift: "105kg x 5"
+    }
+  }
+
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Immagine di sfondo */}
@@ -188,6 +206,23 @@ export default function WorkoutPlan() {
               Programma {goal === 'muscle' ? 'Sviluppo Massa' : 'Perdita Peso'}
             </p>
           </motion.div>
+
+          {/* Timer Section */}
+          <div className="mt-8 mb-8">
+            {goal === 'muscle' ? (
+              gender === 'male' ? (
+                <MassaTimerUomo duration={90} onComplete={() => console.log('Timer completato!')} />
+              ) : (
+                <MassaTimerDonna duration={90} onComplete={() => console.log('Timer completato!')} />
+              )
+            ) : (
+              gender === 'male' ? (
+                <PerditaTimerUomo duration={60} onComplete={() => console.log('Timer completato!')} />
+              ) : (
+                <PerditaTimerDonna duration={60} onComplete={() => console.log('Timer completato!')} />
+              )
+            )}
+          </div>
 
           <div className="flex gap-4 justify-center mb-8 flex-wrap">
             <motion.button
